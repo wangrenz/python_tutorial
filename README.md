@@ -1,2 +1,2 @@
-# python_tutorial
-一些Python使用记录
+# Python使用记录
+包括文件读写，数据处理和绘图
