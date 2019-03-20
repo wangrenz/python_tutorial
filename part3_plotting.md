@@ -22,7 +22,7 @@ clb = plt.colorbar(im,  cax=inset_axes(ax, width="2.8%", height="68%", loc=3),ex
 <div align=center><img src="https://github.com/wangrenz/python_tutorial/blob/master/figures/pm25_square.png" width="70%" /></div>
 
 #### 存图设置
-去掉坐标轴和方框，背景设为透明
+去掉坐标轴和方框，背景设为透明。右击图片在新标签页打开可看到效果。
 ```python
 fig = plt.figure(figsize=(11,11),dpi=100) #figsize=(11,11),dpi=20
 ax = fig.add_axes([0, 0, 1, 1], projection=ccrs.PlateCarree())
