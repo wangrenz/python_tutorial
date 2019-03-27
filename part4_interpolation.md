@@ -36,6 +36,22 @@ zvalue_new = interp.ev(olon, olat)
 
 <div align=center><img src="https://github.com/wangrenz/python_tutorial/blob/master/figures/SmoothBivariateSplinekx2ky2.png" width="70%" /></div>
 
+4. `Rbf` 用于n维散乱数据的径向基函数逼近/插值
+
+少量数据可以，大量自动站插值会出错（求解矩阵）。
+```python
+func = Rbf(lon, lat, zvalue,function='linear')
+zvalue_new = func(olon, olat)
+```
+5. `griddata` 插值D维无结构数据(散点)
+
+大量自动站数据插值会出错。
+```python
+zvalue_new = interpolate.griddata((lon,lat),zvalue,(olon,olat),method='linear')
+```
+
+
+
 ### 4.2 格点到站点
 
 1. `interpn` 双线性内插
