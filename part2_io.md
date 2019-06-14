@@ -1,5 +1,18 @@
 #### Python文件读写
 
+##### NETCDF数据
+1. `scipy`库
+```python
+from scipy.io import netcdf
+f = netcdf.netcdf_file('uv_force.nc', 'w')
+```
+2. `xarray`库
+```python
+import xarray as xr
+ds = xr.open_dataset('uv.nc')
+```
+
+
 ##### grib数据
 调用`cfgrib`包来解`grib`，读取到`xarray`。目前`cfgrib`不支持读取多种层次，详见：https://github.com/ecmwf/cfgrib/issues/2
 
