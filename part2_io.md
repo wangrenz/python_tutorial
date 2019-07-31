@@ -18,7 +18,7 @@ ds = xr.open_dataset('uv.nc')
 
 ```python
 >>> import xarray as xr
-# ERA5在分析数据
+# ERA5再分析数据
 >>> ds = xr.open_dataset('10muv.grib', engine='cfgrib')
 >>> ds
 <xarray.Dataset>
@@ -84,4 +84,28 @@ Attributes:
     Conventions:             CF-1.7
     institution:             US National Weather Service - NCEP
     history:                 2019-06-14T15:33:24 GRIB to CDM+CF via cfgrib-0....
+```
+批量读取
+```python
+>>> ds = xr.open_mfdataset(files, concat_dim='valid_time', engine="cfgrib",backend_kwargs={'filter_by_keys':{'typeOfLevel':'heightAboveGround','level':10},'indexpath':''})
+>>>
+>>> ds = ds.drop(["time","heightAboveGround","step"])
+>>> ds.rename({'valid_time':'time'})
+<xarray.Dataset>
+Dimensions:    (latitude: 361, longitude: 720, time: 17)
+Coordinates:
+  * latitude   (latitude) float64 90.0 89.5 89.0 88.5 ... -89.0 -89.5 -90.0
+  * longitude  (longitude) float64 0.0 0.5 1.0 1.5 ... 358.0 358.5 359.0 359.5
+  * time       (time) datetime64[ns] 2019-07-29T18:00:00 ... 2019-08-02T18:00:00
+Data variables:
+    u10        (time, latitude, longitude) float32 dask.array<shape=(17, 361, 720), chunksize=(1, 361, 720)>
+    v10        (time, latitude, longitude) float32 dask.array<shape=(17, 361, 720), chunksize=(1, 361, 720)>
+Attributes:
+    GRIB_edition:            2
+    GRIB_centre:             kwbc
+    GRIB_centreDescription:  US National Weather Service - NCEP
+    GRIB_subCentre:          0
+    Conventions:             CF-1.7
+    institution:             US National Weather Service - NCEP
+    history:                 2019-07-31T11:22:23 GRIB to CDM+CF via cfgrib-0....
 ```
